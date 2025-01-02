@@ -9,9 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSongs = void 0;
-const getSongs = () => __awaiter(void 0, void 0, void 0, function* () {
-    // Simulated data or database fetch logic
-    return [{ id: 1, title: 'Song A' }, { id: 2, title: 'Song B' }];
+exports.createRoom = exports.getRooms = void 0;
+const roomService_1 = require("../services/roomService");
+const getRooms = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const rooms = yield (0, roomService_1.fetchRooms)();
+        res.json({ rooms });
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Failed to fetch rooms' });
+    }
 });
-exports.getSongs = getSongs;
+exports.getRooms = getRooms;
+const createRoom = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const room = yield (0, roomService_1.createNewRoom)(req.body);
+        res.status(201).json({ room });
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Failed to create room' });
+    }
+});
+exports.createRoom = createRoom;

@@ -8,10 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSongs = void 0;
-const getSongs = () => __awaiter(void 0, void 0, void 0, function* () {
-    // Simulated data or database fetch logic
-    return [{ id: 1, title: 'Song A' }, { id: 2, title: 'Song B' }];
+exports.fetchSpotifyPlaylists = void 0;
+const axios_1 = __importDefault(require("axios"));
+const fetchSpotifyPlaylists = (accessToken) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield axios_1.default.get('https://api.spotify.com/v1/me/playlists', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return response.data.items;
 });
-exports.getSongs = getSongs;
+exports.fetchSpotifyPlaylists = fetchSpotifyPlaylists;

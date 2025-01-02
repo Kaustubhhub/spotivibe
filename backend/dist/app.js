@@ -1,7 +1,19 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const app = () => {
-    console.log("Hi from app");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-app();
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const songRoutes_1 = __importDefault(require("./routes/songRoutes"));
+const roomRoutes_1 = __importDefault(require("./routes/roomRoutes"));
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
+app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
+app.use('/api/v1/rooms', roomRoutes_1.default);
+app.use('/api/v1/songs', songRoutes_1.default);
+app.use('/api/v1/auth', authRoutes_1.default);
 exports.default = app;

@@ -40,12 +40,11 @@ const http_1 = __importDefault(require("http"));
 const app_1 = __importDefault(require("./app"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-const PORT = parseInt(process.env.PORT || "9000", 10);
+const PORT = parseInt(process.env.PORT || "8081", 10);
 const server = http_1.default.createServer(app_1.default);
 server.listen(PORT, () => {
     console.log(`The server is running on port ${PORT}`);
 });
-// Handle graceful shutdown
 process.on("SIGINT", () => {
     console.log("Gracefully shutting down...");
     server.close(() => {

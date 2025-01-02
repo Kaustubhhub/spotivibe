@@ -1,9 +1,10 @@
-import { Router } from "express";
-import { handleLogin, handleLogout, handleSignup } from "../controllers/authController";
-const router = Router()
+import { Router } from 'express';
+import { loginWithSpotify, spotifyCallback } from '../controllers/authController';
 
-router.post("/signup", handleSignup)
-router.post("/login", handleLogin)
-router.post("/logout", handleLogout)
+const router = Router();
 
-export default router
+router.get('/spotify/login', loginWithSpotify);
+router.get('/spotify/callback', spotifyCallback);
+// router.get('/spotify/playlists', getSpotifyPlaylists);
+
+export default router;

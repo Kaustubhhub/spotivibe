@@ -9,9 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSongs = void 0;
-const getSongs = () => __awaiter(void 0, void 0, void 0, function* () {
-    // Simulated data or database fetch logic
-    return [{ id: 1, title: 'Song A' }, { id: 2, title: 'Song B' }];
+exports.fetchSongs = void 0;
+const songService_1 = require("../services/songService");
+const fetchSongs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const songs = yield (0, songService_1.getSongs)();
+        res.json({ songs });
+    }
+    catch (error) {
+        res.status(500).json({ error: 'Failed to fetch songs' });
+    }
 });
-exports.getSongs = getSongs;
+exports.fetchSongs = fetchSongs;

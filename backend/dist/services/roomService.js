@@ -8,22 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createRoom = exports.getAllRooms = void 0;
-const prismaClient_1 = __importDefault(require("../models/prismaClient"));
-const getAllRooms = () => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prismaClient_1.default.room.findMany();
+exports.createNewRoom = exports.fetchRooms = void 0;
+const fetchRooms = () => __awaiter(void 0, void 0, void 0, function* () {
+    // Simulated data or database fetch logic
+    return [{ id: 1, name: 'Room A' }, { id: 2, name: 'Room B' }];
 });
-exports.getAllRooms = getAllRooms;
-const createRoom = (name, creatorId) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield prismaClient_1.default.room.create({
-        data: {
-            name,
-            creatorId,
-        },
-    });
+exports.fetchRooms = fetchRooms;
+const createNewRoom = (data) => __awaiter(void 0, void 0, void 0, function* () {
+    // Simulated room creation logic
+    return Object.assign({ id: Date.now() }, data);
 });
-exports.createRoom = createRoom;
+exports.createNewRoom = createNewRoom;
